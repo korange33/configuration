@@ -9,10 +9,14 @@ clean-pde:
 build-firmware: link-srcdir clean-pde config
 	ino build -m mega2560
 
+upload-arduino:
+	arduino --verify $(MARLINMASTER)Marlin/Marlin.ino
+	arduino --board mega:cpu:atmega2560 --port $(ttyACM) --upload $(MARLINMASTER)Marlin/Marlin.ino
 upload:
 	ls -tr /dev/ttyACM* | tail -1
 	ino upload -p /dev/ttyACM3 -d mega2560
 
+ttyACM=$(shell ls -tr /dev/ttyACM* | tail -1)
 MARLINMASTER=MarlinDev-master/
 CONF=$(MARLINMASTER)Marlin/Configuration.h
 
