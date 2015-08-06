@@ -1,7 +1,7 @@
 all: build-firmware
 
 link-srcdir:
-	ln -s Marlin src
+	ln -s $(MARLINMASTER)Marlin src
 
 clean-pde:
 	rm src/Marlin.pde
