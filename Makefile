@@ -17,7 +17,6 @@ MARLINMASTER=MarlinDev-master/
 CONF=$(MARLINMASTER)Marlin/Configuration.h
 
 update: config
-	rm -Rf MarlinDev-master/ master.zip
 	wget https://github.com/MarlinFirmware/MarlinDev/archive/master.zip
 	unzip master
 
@@ -27,11 +26,11 @@ config:
 	sed -i s/'X_MIN_ENDSTOP_INVERTING = false'/'X_MIN_ENDSTOP_INVERTING = true'/g $(CONF)
 	sed -i s/'Y_MIN_ENDSTOP_INVERTING = false'/'Y_MIN_ENDSTOP_INVERTING = true'/g $(CONF)
 	sed -i s/'Z_MIN_ENDSTOP_INVERTING = false'/'Z_MIN_ENDSTOP_INVERTING = true'/g $(CONF)
-	sed -i 's/MANUAL_Z_HOME_POS 250/MANUAL_Z_HOME_POS 286.5/g' $(CONF)
+	sed -i 's/MANUAL_Z_HOME_POS 250/MANUAL_Z_HOME_POS 296.5/g' $(CONF)
 	sed -i 's/TEMP_SENSOR_0 7/TEMP_SENSOR_0 13/g' $(CONF)
 	sed -i 's/TEMP_SENSOR_BED 11/TEMP_SENSOR_BED 0/g' $(CONF)
 
 .PHONY: clean
 
 clean:
-	rm -rf $(MARLINMASTER)
+	rm -rf $(MARLINMASTER) master.zip
