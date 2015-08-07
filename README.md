@@ -1,3 +1,3 @@
 # configuration
 
-[https://framacalc.org/korange33] (valeurs pour le calibrage)
+[valeurs pour le calibrage] (https://framacalc.org/korange33) 
