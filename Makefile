@@ -34,6 +34,9 @@ config:
 	sed -i 's/TEMP_SENSOR_0 7/TEMP_SENSOR_0 13/g' $(CONF)
 	sed -i 's/TEMP_SENSOR_BED 11/TEMP_SENSOR_BED 0/g' $(CONF)
 	sed -i 's/DELTA_SMOOTH_ROD_OFFSET 145/DELTA_SMOOTH_ROD_OFFSET 156/g' $(CONF)
+	sed -i 's/X_PROBE_OFFSET_FROM_EXTRUDER .*/X_PROBE_OFFSET_FROM_EXTRUDER -20.6  \/\/ Probe on: -left  +right/g' $(CONF)
+	sed -i 's/Y_PROBE_OFFSET_FROM_EXTRUDER .*/Y_PROBE_OFFSET_FROM_EXTRUDER -12.5  \/\/ Probe on: -front +behind/g' $(CONF)
+	sed -i 's/Z_PROBE_OFFSET_FROM_EXTRUDER .*/Z_PROBE_OFFSET_FROM_EXTRUDER -6     \/\/ -below (always!)/g' $(CONF)
 
 .PHONY: clean
 
