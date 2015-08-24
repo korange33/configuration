@@ -1,5 +1,6 @@
 ttyACM=$(shell ls -tr /dev/ttyACM* | tail -1)
-MARLINMASTER=MarlinDev-master/
+VERSION=1.0.2-1
+MARLINMASTER=Marlin-$(VERSION)/
 CONF=$(MARLINMASTER)Marlin/Configuration.h
 
 all: build-firmware
@@ -21,12 +22,12 @@ upload:
 	ino upload -p /dev/ttyACM3 -d mega2560
 
 update:
-	wget https://github.com/MarlinFirmware/MarlinDev/archive/master.zip
-	unzip master
+	wget https://github.com/MarlinFirmware/Marlin/archive/$(VERSION).zip
+	unzip $(VERSION).zip
 
 config:
-	cp $(MARLINMASTER)Marlin/example_configurations/delta/kossel_mini/Configuration.h $(MARLINMASTER)Marlin/
-	cp $(MARLINMASTER)Marlin/example_configurations/delta/kossel_mini/Configuration_adv.h $(MARLINMASTER)Marlin/
+	#cp $(MARLINMASTER)Marlin/example_configurations/delta/kossel_mini/Configuration.h $(MARLINMASTER)Marlin/
+	#cp $(MARLINMASTER)Marlin/example_configurations/delta/kossel_mini/Configuration_adv.h $(MARLINMASTER)Marlin/
 	sed -i s/'X_MIN_ENDSTOP_INVERTING = false'/'X_MIN_ENDSTOP_INVERTING = true'/g $(CONF)
 	sed -i s/'Y_MIN_ENDSTOP_INVERTING = false'/'Y_MIN_ENDSTOP_INVERTING = true'/g $(CONF)
 	sed -i s/'Z_MIN_ENDSTOP_INVERTING = false'/'Z_MIN_ENDSTOP_INVERTING = true'/g $(CONF)
@@ -34,11 +35,11 @@ config:
 	sed -i 's/TEMP_SENSOR_0 7/TEMP_SENSOR_0 13/g' $(CONF)
 	sed -i 's/TEMP_SENSOR_BED 11/TEMP_SENSOR_BED 0/g' $(CONF)
 	sed -i 's/DELTA_SMOOTH_ROD_OFFSET 145/DELTA_SMOOTH_ROD_OFFSET 156/g' $(CONF)
-	sed -i 's/X_PROBE_OFFSET_FROM_EXTRUDER .*/X_PROBE_OFFSET_FROM_EXTRUDER -20.6  \/\/ Probe on: -left  +right/g' $(CONF)
-	sed -i 's/Y_PROBE_OFFSET_FROM_EXTRUDER .*/Y_PROBE_OFFSET_FROM_EXTRUDER -12.5  \/\/ Probe on: -front +behind/g' $(CONF)
+	sed -i 's/X_PROBE_OFFSET_FROM_EXTRUDER .*/X_PROBE_OFFSET_FROM_EXTRUDER 20.6  \/\/ Probe on: -left  +right/g' $(CONF)
+	sed -i 's/Y_PROBE_OFFSET_FROM_EXTRUDER .*/Y_PROBE_OFFSET_FROM_EXTRUDER 12.5  \/\/ Probe on: -front +behind/g' $(CONF)
 	sed -i 's/Z_PROBE_OFFSET_FROM_EXTRUDER .*/Z_PROBE_OFFSET_FROM_EXTRUDER -6     \/\/ -below (always!)/g' $(CONF)
 
 .PHONY: clean
 
 clean:
-	rm -rf $(MARLINMASTER) master.zip
+	rm -rf $(MARLINMASTER) *.zip
