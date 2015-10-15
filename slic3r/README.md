@@ -1,8 +1,8 @@
-Fichiers de conf Slic3er
+Fichiers de conf Slic3r
 =======================
 
-Ce répertoire contient les fichiers de configuration pour [Sli3er](http://slic3r.org/).
-Le fichier de conf peut être utilisé directement en ligne de commande :
+Ce répertoire contient les fichiers de configuration pour [Slic3r](http://slic3r.org/).
+Un fichier de conf peut être utilisé directement en ligne de commande :
 
     slic3r.pl --load mon_fichier.ini --print-center 0,0 mon_modele.stl
 
